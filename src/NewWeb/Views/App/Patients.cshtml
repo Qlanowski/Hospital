@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Patients Page";
+}
+@section Scripts{
+    <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/js/app-patients.js"></script>
+    <script src="~/js/patientsController.js"></script>
+}
+<div ng-app="app-patients">
+    <div id="search">
+        Search Box
+        <div ng-controller="patientsController as vm">
+            <table class="table table-responsive">
+                <tr ng-repeat="patient in vm.patients">   
+                    <td>{{patient.Surname}}</td>
+                    <td>{{patient.Name}}</td>
+                    <td><a href="#" class="btn btn-sm btn-primary">Show</a></td>
+                </tr>  
+            </table> 
+        </div>
+    </div>
+    <div id="patient">
+        Patient Box
+
+    </div>
+</div>
