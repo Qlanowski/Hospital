@@ -85,10 +85,11 @@ namespace NewWeb.Controllers
                 var newDoctor = Mapper.Map<Doctor>(theDoctor);
 
                 var result = await _userManager.CreateAsync(newDoctor, password);
-                
-
-                return RedirectToAction("Index", "App");
-
+                if (result.Succeeded)
+                {
+                    await _signInManager.SignInAsync(newDoctor, isPersistent: false);
+                    return RedirectToAction("Index", "App");
+                }
             }
             return BadRequest("Failed to register");
             

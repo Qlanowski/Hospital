@@ -15,19 +15,17 @@
         vm.newDoctor = {};
 
         vm.registerDoctor = function () {
-            //alert(vm.newDoctor.UserName)
+            vm.errorMessage = "";
 
             $http.post("/Auth/Register", vm.newDoctor)
-                .then(function (response) {
+                .then(function () {
                     //success
-                    vm.doctors.push(response.data);
                     vm.newDoctor = {};
+                    
                 }, function () {
                     //failure
                     vm.errorMessage = "Failed to register";
                 })
-                
-
         };
 
     }
