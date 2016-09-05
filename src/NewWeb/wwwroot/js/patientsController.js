@@ -10,6 +10,7 @@
         var vm = this;
 
         vm.patients = [];
+        vm.patient = [];
         
         vm.errorMessage = "";
         //vm.isBusy = true;
@@ -26,11 +27,9 @@
             vm.isBusy = false;
         });
 
-       $scope.ShowPatient = function () {
-            alert("Did you really think that would work??? :-)");
+       $scope.ShowPatient = function (patient) {
+           angular.copy(patient, vm.patient);
         };
-
-
     }
 
 })();
