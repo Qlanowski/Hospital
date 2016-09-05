@@ -16,3 +16,7 @@
 #menu{
     margin-bottom:0;
 }
+#searchTable tr:hover{
+    background-color: #eee;
+    color: #808080;
+}

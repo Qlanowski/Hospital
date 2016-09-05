@@ -9,8 +9,6 @@
         var vm = this;
           
         vm.errorMessage = "";
-          
-        vm.doctors = [];
 
         vm.newDoctor = {};
 
