@@ -1,0 +1,45 @@
+﻿<div>
+    <div id="leftPanel">
+        <div id="divNewPatient">
+            <a href="#!/newpatient" id="btnNewPatient" class="btn btn-success">New Patient</a>
+        </div>
+        <div id="search" class="panel panel-default">
+            <form>
+                Search
+            </form>
+
+            <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
+            <wait-cursor display-when="vm.isBusy"></wait-cursor>
+            <table id="searchTable" class="table table-responsive">
+                <tr ng-repeat="patient in vm.patients" ng-click="ShowPatient(patient)">
+                    <td>{{patient.surname}}</td>
+                    <td>{{patient.name}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="patient">
+        <div id="patientInfo" class="panel panel-default">
+            <h2>{{vm.patient.surname}}, {{vm.patient.name}} </h2>
+            <table>
+                <tr>
+                    <td>Sex:</td>
+                    <td>{{ vm.patient.sex}}</td>
+                </tr>
+                <tr>
+                    <td>Birth Date:</td>
+                    <td>{{vm.patient.birthDate | date:"dd-MM-yyyy"}}</td>
+                </tr>
+                <tr>
+                    <td>PESEL:</td>
+                    <td>{{vm.patient.pesel }}</td>
+                </tr>
+                <tr>
+                    <td>Email:</td>
+                    <td>{{vm.patient.email}}</td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>

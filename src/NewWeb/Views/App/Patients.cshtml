@@ -3,57 +3,14 @@
 }
 @section Scripts{
     <script src="~/lib/angular/angular.min.js"></script>
+    <script src="~/lib/angular-route/angular-route.min.js"></script>
     <script src="~/js/simpleControls.js"></script>
     <script src="~/js/app-patients.js"></script>
     <script src="~/js/patientsController.js"></script>
+    <script src="~/js/newPatientController.js"></script>
 }
 <div ng-app="app-patients">
-    <div ng-controller="patientsController as vm">
-        <div id="search" class="panel panel-default">
-            <form>
-                Search
-            </form>
-
-            <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
-            <wait-cursor display-when="vm.isBusy"></wait-cursor>
-            <table id="searchTable" class="table table-responsive">
-                <tr ng-repeat="patient in vm.patients" ng-click="ShowPatient(patient)">
-                    <td>{{patient.surname}}</td>
-                    <td>{{patient.name}}</td>
-                </tr>
-            </table>
-        </div>
-        <div id="patient">
-            <div id="patientInfo" class="panel panel-default">
-                <h2>Patient <button class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></button></h2>
-                <table>
-                    <tr>
-                        <td>Surname:</td>
-                        <td>{{vm.patient.surname}}</td>
-                    </tr>
-                    <tr>
-                        <td>Name:</td>
-                        <td>{{vm.patient.name}}</td>
-                    </tr>
-                    <tr>
-                        <td>Sex:</td>
-                        <td>{{ vm.patient.sex}}</td>
-                    </tr>
-                    <tr>
-                        <td>Birth Date:</td>
-                        <td>{{vm.patient.birthDate | date:"dd-MM-yyyy"}}</td>
-                    </tr>
-                    <tr>
-                        <td>PESEL:</td>
-                        <td>{{vm.patient.pesel }}</td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td>{{vm.patient.email}}</td>
-                    </tr>
-                </table>
-
-            </div>
-        </div>
-    </div>
+   
+    <div ng-view></div>
+     
 </div>

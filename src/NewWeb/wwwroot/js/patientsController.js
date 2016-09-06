@@ -30,11 +30,13 @@
         $scope.ShowPatient = function (patient) {
             // nie dziala zamiana 1 i 0 na plec
             //vm.patient = {};
-            //if (patient.sex == 0) {
-            //    patient.sex = "Male";
+            //var newpatient = {}
+            //newpatient = patient;
+            //if (newpatient.sex == 0) {
+            //    newpatient.sex = "Male";
             //}
             //else {
-            //    patient.sex = "Female"
+            //    newpatient.sex = "Female"
             //}
             angular.copy(patient, vm.patient);
             

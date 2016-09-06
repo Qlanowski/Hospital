@@ -1,18 +1,13 @@
 ﻿#search{
     background-color: #808080;
     color: #eee;
-    position: fixed;
+    /*position: fixed;*/
     height: 100%;
-    width: 250px;
-    overflow: hidden;
-    left: 0;
-    margin:0 0px 10px 10px ;
-    transition: left ease .25s;
+    
+    
 }
 #patient{
     margin-left:260px;
-    transition: margin-left ease .25s;
-
 }
 #menu{
     margin-bottom:0;
@@ -26,4 +21,20 @@
     margin: 10px;
     padding:15px;
     padding-top: 0;
+}
+#divNewPatient{
+    width: 250px;
+    margin-bottom: 10px;
+}
+#leftPanel{
+    position: fixed;
+    height: 100%;
+    width: 250px;
+    overflow: hidden;
+    left: 0;
+    margin:0 0px 10px 10px ; 
+}
+#btnNewPatient{
+    width: 100%;
+
 }

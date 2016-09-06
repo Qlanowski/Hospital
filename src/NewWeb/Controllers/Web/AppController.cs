@@ -36,7 +36,7 @@ namespace NewWeb.Controllers.Web
             }
             catch(Exception ex)
             {
-                _logger.LogError($"Failed to loa patients: {ex.Message}");
+                _logger.LogError($"Failed to load patients: {ex.Message}");
                 return Redirect("/error");
             }
             
@@ -45,16 +45,7 @@ namespace NewWeb.Controllers.Web
         [Authorize]
         public IActionResult Patients()
         {
-            try
-            {
-                var patients = _patientRepository.GetDoctorsPatients(User.Identity.Name);
-                return View(patients);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError($"Failed to get all Patients: {ex.Message}");
-                return Redirect("/error");
-            }
+            return View();        
         }
         public IActionResult About()
         {
