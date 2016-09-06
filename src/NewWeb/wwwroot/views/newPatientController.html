@@ -4,6 +4,7 @@
         
         <h3>Add new Patient <a href="#!/" class="btn btn-default btn-sm"><i class="fa fa-angle-left"></i> Back</a></h3>
         <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
+        <wait-cursor display-when="vm.isBusy"></wait-cursor>
         <form novalidate name="NewPatientForm" ng-submit="vm.addPatient()">
             <div class="form-group">
                 <label for="Name">Name</label>

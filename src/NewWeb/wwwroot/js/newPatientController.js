@@ -11,6 +11,7 @@
         vm.newPatient = {};
         
         vm.addPatient = function () {
+            vm.isBusy = true;
             vm.errorMessage = "";
 
             $http.post("/api/patients", vm.newPatient)
@@ -20,6 +21,9 @@
             }, function () {
                 //failure
                 vm.errorMessage = "Failed to add new patient";
+            })
+            .finally(function () {
+                vm.isBusy = false;
             });
         }
     };
