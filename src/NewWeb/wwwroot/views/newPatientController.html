@@ -1,11 +1,10 @@
 ﻿<div class="row">
     
     <div class="col-md-6 col-md-offset-3">
-        <a href="#!/" class="btn btn-default btn-sm"><i class="fa fa-angle-left"></i> Back</a>
-        <h1>Hi {{vm.name}}</h1>
-        <h3>Add new Patient</h3>
+        
+        <h3>Add new Patient <a href="#!/" class="btn btn-default btn-sm"><i class="fa fa-angle-left"></i> Back</a></h3>
         <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
-        <form novalidate name="NewPatientForm" ng-submit="vm.newPatient()">
+        <form novalidate name="NewPatientForm" ng-submit="vm.addPatient()">
             <div class="form-group">
                 <label for="Name">Name</label>
                 <input class="form-control" type="text" id="Name" name="Name" ng-model="vm.newPatient.Name" required ng-minlength="3"/>
@@ -14,30 +13,38 @@
 
             </div>
             <div class="form-group">
-                <label for="Surename">Surename</label>
-                <input type="text" class="form-control" id="Surename" name="Surename" ng-model="vm.newPatient.Surename" required ng-minlength="3" />
-                <span ng-show="NewPatientForm.Surename.$error.required" class="text-warning">Surename is required.</span>
-                <span ng-show="NewPatientForm.Surename.$error.minlength" class="text-warning">Surename must at least have 8 characters, number, capital letter and special character. </span>
+                <label for="Surname">Surname</label>
+                <input type="text" class="form-control" id="Surname" name="Surname" ng-model="vm.newPatient.Surname" required ng-minlength="3" />
+                <span ng-show="NewPatientForm.Surname.$error.required" class="text-warning">Surname is required.</span>
+                <span ng-show="NewPatientForm.Surname.$error.minlength" class="text-warning">Surname must at least have 8 characters, number, capital letter and special character. </span>
             </div>
             <div class="form-group">
                 <label for="Sex">Sex</label>
-                <select class="form-control">
+                <select class="form-control" >
                     <option value="0">Male</option>
                     <option value="1">Female</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="BirthDate">Birth Date</label>
-                <input class="form-control" type="date" id="BirthDate" name="BirthDate" ng-model="vm.newPatient.BirthDate" required />
+                <input class="form-control" type="date" id="BirthDate" name="BirthDate" ng-model="vm.newPatient.BirthDate"  required />
                 <span ng-show="NewPatientForm.BirthDate.$error.required" class="text-warning">Birth Date is required.</span>
+
             </div>
             <div class="form-group">
-                <label asp-for="Ward"></label>
-                <input class="form-control" type="text" id="Ward" name="Ward" ng-model="vm.newDoctor.Ward" required />
-                <span ng-show="RegisterForm.Ward.$error.required" class="text-warning">Ward is required.</span>
+                <label for="PESEL">PESEL</label>
+                <input class="form-control" type="text" id="PESEL" name="PESEL" ng-model="vm.newPatient.PESEL" required ng-maxlength="11" ng-minlength="11"/>
+                <span ng-show="NewPatientForm.PESEL.$error.required" class="text-warning">PESEL is required.</span>
+                <span ng-show="NewPatientForm.PESEL.$error.minlength" class="text-warning">PESEL must have 11 digits.</span>
+                <span ng-show="NewPatientForm.PESEL.$error.maxlength" class="text-warning">PESEL is too long.</span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Register" class="btn btn-success" ng-disabled="RegisterForm.$invalid" />
+                <label for="Email">Email</label>
+                <input type="email" class="form-control" id="Email" name="Email" ng-model="vm.newPatient.Email"/>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-success" ng-disabled="NewPatientForm.$invalid" />
+                <a href="#!/" class="btn btn-default">Cancel</a>
             </div>
         </form>
     </div>

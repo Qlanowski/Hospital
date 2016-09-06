@@ -53,7 +53,8 @@ namespace NewWeb.Controllers.Api
 
                 if (await _patientRepository.SaveChangesAsync())
                 {
-                    return Created($"api/patients/{thePatient.Surname}", Mapper.Map<PatientViewModel>(newPatient));
+                    //return Created($"api/patients/{thePatient.Surname}", Mapper.Map<PatientViewModel>(newPatient));
+                    return RedirectToAction("Patients", "App");
                 }
 
             }
