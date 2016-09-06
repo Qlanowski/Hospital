@@ -2,6 +2,6 @@
 
     "use strict";
     //Creating the module
-    angular.module("app-patients", [])
+    angular.module("app-patients", ["simpleControls"])
 
 })();

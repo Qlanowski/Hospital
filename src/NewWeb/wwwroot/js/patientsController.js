@@ -10,7 +10,7 @@
         var vm = this;
 
         vm.patients = [];
-        vm.patient = [];
+        vm.patient = {};
         
         vm.errorMessage = "";
         //vm.isBusy = true;
@@ -21,14 +21,23 @@
             angular.copy(response.data, vm.patients);
         }, function (error) {
             //failure
-            vm.errorMessage = "Failed to load yours patients"
+            vm.errorMessage = "Failed to load yours patients" + error;
         })
         .finally(function () {
             vm.isBusy = false;
         });
 
-       $scope.ShowPatient = function (patient) {
-           angular.copy(patient, vm.patient);
+        $scope.ShowPatient = function (patient) {
+            // nie dziala zamiana 1 i 0 na plec
+            //vm.patient = {};
+            //if (patient.sex == 0) {
+            //    patient.sex = "Male";
+            //}
+            //else {
+            //    patient.sex = "Female"
+            //}
+            angular.copy(patient, vm.patient);
+            
         };
     }
 
