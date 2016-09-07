@@ -61,15 +61,17 @@ namespace NewWeb.Controllers.Api
 
             return BadRequest("Failed to save changes to the database");
         }
-        [HttpPut("")]
-        public async Task<IActionResult> Put(int patientId, [FromBody]PatientViewModel vm)
+        [HttpPut("{patientId}")]
+        public async Task<IActionResult> Put(int patientId, [FromBody]Patient vm)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var updatedPatient = Mapper.Map<Patient>(vm);
-                    _patientRepository.UpdatePatient(updatedPatient, User.Identity.Name, patientId);
+                    //var updatedPatient = Mapper.Map<Patient>(vm);
+                    var updatedPatient = vm;
+                    
+                    _patientRepository.UpdatePatient(updatedPatient);
                     if (await _patientRepository.SaveChangesAsync())
                     {
                         return RedirectToAction("Patients", "App");

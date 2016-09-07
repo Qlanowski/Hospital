@@ -66,15 +66,9 @@ namespace NewWeb.Models
         }
 
 
-        public void UpdatePatient(Patient updatedPatient, string name, int patientId)
+        public void UpdatePatient(Patient updatedPatient)
         {
-            var patientToUpdate = GetPatientBySurname(patientId, name);
-            
-                _context.Entry(patientToUpdate).CurrentValues.SetValues(updatedPatient);
-            
-
-            
-
+            _context.Update(updatedPatient);
         }
     }
 }
