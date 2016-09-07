@@ -9,5 +9,7 @@ namespace NewWeb.Models
         Task<bool> SaveChangesAsync();
         IEnumerable<Patient> GetDoctorsPatients(string name);
         void DoctorAddPatient(Patient newPatient, string name);
+        Patient GetPatientBySurname(int patientId, string name);
+        void UpdatePatient(Patient updatedPatient, string name, int patientId);
     }
 }

@@ -42,7 +42,7 @@ namespace NewWeb.Controllers.Api
             }
            
         }
-
+        
         [HttpPost("")]
         public async Task<IActionResult> PostPatient([FromBody]PatientViewModel thePatient)
         {
@@ -61,5 +61,45 @@ namespace NewWeb.Controllers.Api
 
             return BadRequest("Failed to save changes to the database");
         }
+        [HttpPut("")]
+        public async Task<IActionResult> Put(int patientId, [FromBody]PatientViewModel vm)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var updatedPatient = Mapper.Map<Patient>(vm);
+                    _patientRepository.UpdatePatient(updatedPatient, User.Identity.Name, patientId);
+                    if (await _patientRepository.SaveChangesAsync())
+                    {
+                        return RedirectToAction("Patients", "App");
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to update patient: {0}", ex);
+            }
+            return BadRequest("Failed to update patient");
+        }
+
+        [HttpGet("{patientId}")]
+        public IActionResult GetBySurname(int patientId)
+        {
+            try
+            {
+                var patient = _patientRepository.GetPatientBySurname(patientId, User.Identity.Name);
+
+                return Ok(patient);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to get patient: {0}", ex);
+            }
+
+            return BadRequest("Failed to get patient");
+        }
+
     }
 }

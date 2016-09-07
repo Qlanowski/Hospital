@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,9 +48,33 @@ namespace NewWeb.Models
             return patients;
         }
 
+        public Patient GetPatientBySurname(int patientId, string name)
+        {
+            var patients = GetDoctorsPatients(name);
+
+            var patient = patients
+                .Where(p => p.PatientId == patientId)
+                .FirstOrDefault();
+
+            return patient;
+                
+        }
+
         public async Task<bool> SaveChangesAsync()
         {
             return (await _context.SaveChangesAsync()) > 0;
+        }
+
+
+        public void UpdatePatient(Patient updatedPatient, string name, int patientId)
+        {
+            var patientToUpdate = GetPatientBySurname(patientId, name);
+            
+                _context.Entry(patientToUpdate).CurrentValues.SetValues(updatedPatient);
+            
+
+            
+
         }
     }
 }

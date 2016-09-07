@@ -17,11 +17,11 @@
                 <label for="Surname">Surname</label>
                 <input type="text" class="form-control" id="Surname" name="Surname" ng-model="vm.newPatient.Surname" required ng-minlength="3" />
                 <span ng-show="NewPatientForm.Surname.$error.required" class="text-warning">Surname is required.</span>
-                <span ng-show="NewPatientForm.Surname.$error.minlength" class="text-warning">Surname must at least have 8 characters, number, capital letter and special character. </span>
+                <span ng-show="NewPatientForm.Surname.$error.minlength" class="text-warning">Surname must be at least have 3 characters.</span>
             </div>
             <div class="form-group">
                 <label for="Sex">Sex</label>
-                <select class="form-control" >
+                <select class="form-control" ng-model="vm.newPatient.Sex" >
                     <option value="0">Male</option>
                     <option value="1">Female</option>
                 </select>

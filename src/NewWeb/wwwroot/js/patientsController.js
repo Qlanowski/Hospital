@@ -13,7 +13,7 @@
         vm.patient = {};
         
         vm.errorMessage = "";
-        //vm.isBusy = true;
+        vm.isBusy = true;
 
         $http.get("/api/patients")
         .then(function (response) {
