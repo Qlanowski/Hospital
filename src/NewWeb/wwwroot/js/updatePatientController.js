@@ -9,7 +9,9 @@
 
         
         vm.patient = {};// Patient which will be updated
+        
         vm.patientId = $routeParams.patientId;
+         
 
         vm.errorMessage = "";
         vm.isBusy = true;
@@ -25,6 +27,24 @@
         .finally(function () {
             vm.isBusy = false;
         });
+
+        vm.editPatient = function () {
+            vm.isBusy = true;
+            vm.errorMessage = "";
+            vm.updatePatient.patientId = vm.patientId;
+            $http.put("/api/patients/" + vm.patientId, vm.updatePatient)
+             .then(function () {
+                 //success
+                 vm.errorMessage= "Succesfully updated patient";
+             }, function () {
+                 //failure
+                 vm.errorMessage = "Failed to update patient";
+             })
+            .finally(function () {
+                vm.isBusy = false;
+            });
+
+        }
         
     };
 })();

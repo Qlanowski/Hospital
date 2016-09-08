@@ -62,7 +62,7 @@ namespace NewWeb.Controllers.Api
             return BadRequest("Failed to save changes to the database");
         }
         [HttpPut("{patientId}")]
-        public async Task<IActionResult> Put(int patientId, [FromBody]Patient vm)
+        public async Task<IActionResult> Put([FromBody]Patient vm)
         {
             try
             {
