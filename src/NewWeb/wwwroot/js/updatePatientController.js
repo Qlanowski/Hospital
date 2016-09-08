@@ -14,6 +14,7 @@
          
 
         vm.errorMessage = "";
+        vm.message = "";
         vm.isBusy = true;
 
         $http.get("/api/patients/" + vm.patientId)
@@ -30,12 +31,13 @@
 
         vm.editPatient = function () {
             vm.isBusy = true;
-            vm.errorMessage = "";
-            vm.updatePatient.patientId = vm.patientId;
-            $http.put("/api/patients/" + vm.patientId, vm.updatePatient)
+            vm.errorMessage = ""; //clearing this three paramiters
+            vm.message = "";
+            //vm.updatePatient.patientId = vm.patientId; // add Id to updatedPatien
+            $http.put("/api/patients/" + vm.patientId, vm.patient) // adress and nesessary object to HttpPut method
              .then(function () {
                  //success
-                 vm.errorMessage= "Succesfully updated patient";
+                 vm.message= "Succesfully updated patient";
              }, function () {
                  //failure
                  vm.errorMessage = "Failed to update patient";

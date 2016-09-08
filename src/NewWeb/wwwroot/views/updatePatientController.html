@@ -3,45 +3,45 @@
     <div class="col-md-6 col-md-offset-3">
         <h3>Update Patient - {{vm.patient.surname}}, {{vm.patient.name}} <a href="#!/" class="btn btn-default btn-sm"><i class="fa fa-angle-left"></i> Back</a></h3>
         <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
-        <div class="text-success" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
+        <div class="text-success" ng-show="vm.message">{{vm.message}}</div>
         <wait-cursor display-when="vm.isBusy"></wait-cursor>
         <form novalidate name="UpdatePatientForm" ng-submit="vm.editPatient()">
             <div class="form-group">
                 <label for="Name">Name</label>
-                <input class="form-control" placeholder="{{vm.patient.name}}" type="text" id="Name" name="Name" ng-model="vm.updatePatient.Name" required ng-minlength="3" />
+                <input class="form-control" type="text" id="Name" name="Name" ng-model="vm.patient.name" required ng-minlength="3" />
                 <span ng-show="UpdatePatientForm.Name.$error.required" class="text-warning">Name is required.</span>
                 <span ng-show="UpdatePatientForm.Name.$error.minlength" class="text-warning">Name must be at least 3 characters.</span>
 
             </div>
             <div class="form-group">
                 <label for="Surname">Surname</label>
-                <input type="text" class="form-control" placeholder="{{vm.patient.surname}}" id="Surname" name="Surname" ng-model="vm.updatePatient.Surname" required ng-minlength="3" />
+                <input type="text" class="form-control" id="Surname" name="Surname" ng-model="vm.patient.surname" required ng-minlength="3" />
                 <span ng-show="UpdatePatientForm.Surname.$error.required" class="text-warning">Surname is required.</span>
                 <span ng-show="UpdatePatientForm.Surname.$error.minlength" class="text-warning">Surname must be at least have 3 characters.</span>
             </div>
             <div class="form-group">
                 <label for="Sex">Sex</label>
-                <select class="form-control" ng-model="vm.updatePatient.Sex">
+                <select class="form-control" ng-model="vm.patient.sex">
                     <option value="0">Male</option>
                     <option value="1">Female</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="BirthDate">Birth Date</label>
-                <input class="form-control" type="date" id="BirthDate" name="BirthDate" ng-model="vm.updatePatient.BirthDate" required />
+                <input class="form-control" type="date" id="BirthDate" name="BirthDate" ng-model="vm.patient.birthDate" required />
                 <span ng-show="UpdatePatientForm.BirthDate.$error.required" class="text-warning">Birth Date is required.</span>
 
             </div>
             <div class="form-group">
                 <label for="PESEL">PESEL</label>
-                <input class="form-control" placeholder="{{vm.patient.pesel}}" type="text" id="PESEL" name="PESEL" ng-model="vm.updatePatient.PESEL" required ng-maxlength="11" ng-minlength="11" />
+                <input class="form-control" placeholder="{{vm.patient.pesel}}" type="text" id="PESEL" name="PESEL" ng-model="vm.patient.pesel" required ng-maxlength="11" ng-minlength="11" />
                 <span ng-show="UpdatePatientForm.PESEL.$error.required" class="text-warning">PESEL is required.</span>
                 <span ng-show="UpdatePatientForm.PESEL.$error.minlength" class="text-warning">PESEL must have 11 digits.</span>
                 <span ng-show="UpdatePatientForm.PESEL.$error.maxlength" class="text-warning">PESEL is too long.</span>
             </div>
             <div class="form-group">
                 <label for="Email">Email</label>
-                <input type="email" placeholder="{{vm.patient.email}}" class="form-control" id="Email" name="Email" ng-model="vm.updatePatient.Email"/>
+                <input type="email" placeholder="{{vm.patient.email}}" class="form-control" id="Email" name="Email" ng-model="vm.patient.email"/>
                 
             </div>
             <div class="form-group">
