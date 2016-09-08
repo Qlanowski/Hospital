@@ -106,6 +106,7 @@ namespace NewWeb
                 factory.AddDebug(LogLevel.Error);
             }
 
+            app.UseDefaultFiles();
             app.UseStaticFiles();
             app.UseIdentity();
 
