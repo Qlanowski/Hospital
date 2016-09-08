@@ -15,14 +15,20 @@ namespace NewWeb.Models
             _context = context;
         }
 
-        public void AddDoctor(Doctor newDoctor)
-        {
-            _context.Add(newDoctor);
-        }
 
         public IEnumerable<Doctor> GetAllDoctors()
         {
             return _context.Doctors.ToList();
+        }
+
+        public IEnumerable<Doctor> GetPatientDoctors(int patientId)
+        {
+            var doctors = _context.DoctorPatients
+                                    .Where(dp => dp.PatientId == patientId)
+                                    .Select(dp=>dp.Doctor)
+                                    .ToList();
+
+            return doctors;
         }
 
         public async Task<bool> SaveChangesAsync()

@@ -6,7 +6,7 @@ namespace NewWeb.Models
     public interface IDoctorRepository
     {
         IEnumerable<Doctor> GetAllDoctors();
-        void AddDoctor(Doctor newDoctor);
         Task<bool> SaveChangesAsync();
+        IEnumerable<Doctor> GetPatientDoctors(int patientId);
     }
 }

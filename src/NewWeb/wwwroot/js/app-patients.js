@@ -23,6 +23,12 @@
             templateUrl: "/views/updatePatientController.html"
         });
 
+        $routeProvider.when("/doctors/:patientId", {
+            controller: "doctorController",
+            controllerAs: "vm",
+            templateUrl: "/views/doctorController.html"
+        });
+
 
         $routeProvider.otherwise({ redirectTo: "/" });
 

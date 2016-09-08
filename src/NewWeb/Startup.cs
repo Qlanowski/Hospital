@@ -94,6 +94,7 @@ namespace NewWeb
             {
                 config.CreateMap<PatientViewModel, Patient>().ReverseMap();
                 config.CreateMap<RegisterDoctorViewModel, Doctor>().ReverseMap();
+                config.CreateMap<SentPatientViewModel, Doctor>().ReverseMap();
             });
 
             if (env.IsEnvironment("Development"))
