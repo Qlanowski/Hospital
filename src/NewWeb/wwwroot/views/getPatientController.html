@@ -1,0 +1,20 @@
+﻿<div class="row">
+    
+    <div class="col-md-6 col-md-offset-3">
+        <h3>Select Patients<a href="#!/" class="btn btn-default btn-sm"><i class="fa fa-angle-left"></i> Back</a></h3>
+        <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
+        <wait-cursor display-when="vm.isBusy"></wait-cursor>
+        <table class="table table-responsive">
+            <tr>
+                <td>Name</td>
+                <td>Surname</td>
+                <td>Add</td>
+            </tr>
+            <tr ng-repeat="patient in vm.patients">
+                <td>{{patient.name}}</td>
+                <td>{{patient.surname}}</td>
+                <td><a href="#" class="btn btn-success btn-sm">Add To My Patients</a></td>
+            </tr>
+        </table>
+    </div>
+</div>

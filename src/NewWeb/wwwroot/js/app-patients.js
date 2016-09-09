@@ -28,6 +28,11 @@
             controllerAs: "vm",
             templateUrl: "/views/doctorController.html"
         });
+        $routeProvider.when("/getpatient", {
+            controller: "getPatientController",
+            controllerAs: "vm",
+            templateUrl: "/views/getPatientController.html"
+        })
 
 
         $routeProvider.otherwise({ redirectTo: "/" });

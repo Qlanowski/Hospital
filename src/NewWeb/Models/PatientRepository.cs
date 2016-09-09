@@ -50,7 +50,22 @@ namespace NewWeb.Models
 
         public Patient GetPatientBySurname(int patientId, string name)
         {
-            var patients = GetDoctorsPatients(name);
+            var patients = _context.Doctors
+                .Join(
+                _context.DoctorPatients,
+                d => d.Id,
+                dp => dp.Id,
+                (d, dp) => new { d, dp }
+                )
+                .Join(
+                _context.Patients,
+                pdp => pdp.dp.PatientId,
+                pa => pa.PatientId,
+                (pdp, pa) => new { pdp, pa }
+                )
+                .Where(c => c.pdp.d.UserName == name)
+                .Select(c => c.pa)
+                .ToList(); 
 
             var patient = patients
                 .Where(p => p.PatientId == patientId)
@@ -58,6 +73,40 @@ namespace NewWeb.Models
 
             return patient;
                 
+        }
+
+        public IEnumerable<Patient> GetRestPatiens(string name)
+        {
+            var myPatientsId = _context.Doctors //Id pacjetów lekarza który chce ściągnąć  nowych pacjętów
+                .Join(
+                _context.DoctorPatients,
+                d => d.Id,
+                dp => dp.Id,
+                (d, dp) => new { d, dp }
+                )
+                .Join(
+                _context.Patients,
+                pdp => pdp.dp.PatientId,
+                pa => pa.PatientId,
+                (pdp, pa) => new { pdp, pa }
+                )
+                .Where(c => c.pdp.d.UserName == name)
+                .Select(c => c.pa.PatientId)
+                .ToList();
+
+            var allPatientsId = _context.Patients //id wszystkich pacjentów w bazie
+                                .Select(p=>p.PatientId)
+                                .ToList();
+
+            IEnumerable<int> patientsIdToReturn = allPatientsId.Except(myPatientsId); //kolekcja Id wszystkich pacjętów bez id pacjętów których już ten lekarz ma
+
+            var patients = _context.Patients // zwraca pacjetów których ten lekarz nie ma
+                                    .Where(p => patientsIdToReturn.Any(p2=>p2.Equals(p.PatientId)))
+                                    .ToList();
+
+            return patients;
+
+
         }
 
         public async Task<bool> SaveChangesAsync()

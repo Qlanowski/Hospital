@@ -42,7 +42,23 @@ namespace NewWeb.Controllers.Api
             }
            
         }
-        
+        [HttpGet("rest")]
+        public IActionResult GetRestPatients()
+        {
+            try
+            {
+                var patients = _patientRepository.GetRestPatiens(User.Identity.Name);
+
+                return Ok(Mapper.Map<IEnumerable<GetPatientViewModel>>(patients));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"Failed to get patients: {ex}");
+                return BadRequest("Error occured");
+            }
+
+        }
+
         [HttpPost("")]
         public async Task<IActionResult> PostPatient([FromBody]PatientViewModel thePatient)
         {
