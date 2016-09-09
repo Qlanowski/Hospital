@@ -10,10 +10,10 @@
                 <td>Surname</td>
                 <td>Add</td>
             </tr>
-            <tr ng-repeat="patient in vm.patients">
+            <tr ng-repeat="patient in vm.patients" >
                 <td>{{patient.name}}</td>
                 <td>{{patient.surname}}</td>
-                <td><a href="#" class="btn btn-success btn-sm">Add To My Patients</a></td>
+                <td><p ng-click="getPatient(patient.patientId)" class="btn btn-sm btn-success">Add Patient</p></td>
             </tr>
         </table>
     </div>

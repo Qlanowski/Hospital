@@ -3,9 +3,9 @@
     "use strict";
 
     angular.module("app-patients")
-    .controller("getPatientController", getPatientController);
+    .controller("getPatientController", getPatientController)
 
-    function getPatientController($http){
+    function getPatientController($http, $scope){
         var vm = this;
         vm.patients = [];
         vm.errorMessage = "";
@@ -22,6 +22,24 @@
         .finally(function () {
             vm.isBusy = false;
         });
-    }
+
+        $scope.getPatient = function (patientId) {
+            
+            $http.post("/api/patients/rest/" + patientId, patientId)
+            .then(function (response) {
+                //success
+                vm.errorMessage = "Successfuly get new patient";
+            }, function (error) {
+                //failure
+                vm.errorMessage = "Failed to get new patients" + error;
+            })
+        .finally(function () {
+            vm.isBusy = false;
+        });
+
+        }
+        
+     }
+      
 
 })();

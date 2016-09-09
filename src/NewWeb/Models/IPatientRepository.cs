@@ -12,5 +12,6 @@ namespace NewWeb.Models
         Patient GetPatientBySurname(int patientId, string name);
         void UpdatePatient(Patient updatedPatient);
         IEnumerable<Patient> GetRestPatiens(string name);
+        void CreateNewDoctorPatientMatch(int patientId, string name);
     }
 }

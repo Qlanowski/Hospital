@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NewWeb.Models;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace NewWeb.Controllers.Api
 {
@@ -35,12 +37,12 @@ namespace NewWeb.Controllers.Api
 
                 return Ok(doctorsPatients);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.LogError($"Failed to get all your patients: {ex}");
                 return BadRequest("Error occured");
             }
-           
+
         }
         [HttpGet("rest")]
         public IActionResult GetRestPatients()
@@ -57,6 +59,21 @@ namespace NewWeb.Controllers.Api
                 return BadRequest("Error occured");
             }
 
+        }
+        [HttpPost("rest/{patientId}")]
+        public async Task<IActionResult> PostPatient([FromRoute] int patientId)
+        {
+            if (patientId != 0)
+            {
+                _patientRepository.CreateNewDoctorPatientMatch(patientId, User.Identity.Name);
+            }   
+           if (await _patientRepository.SaveChangesAsync())
+           {
+              //return Created($"api/patients/{thePatient.Surname}", Mapper.Map<PatientViewModel>(newPatient));
+              return RedirectToAction("Patients", "App");
+           }
+
+            return BadRequest("Failed to save changes to the database");
         }
 
         [HttpPost("")]

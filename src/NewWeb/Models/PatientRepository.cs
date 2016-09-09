@@ -17,7 +17,13 @@ namespace NewWeb.Models
         {
             _context = context;
             _logger = logger;
-        }   
+        }
+
+        public void CreateNewDoctorPatientMatch(int patientId, string name)
+        {
+            var doctor = _context.Doctors.Where(d => d.UserName == name).FirstOrDefault();
+            _context.DoctorPatients.Add(new DoctorPatient() { Id = doctor.Id, PatientId = patientId });
+        }
 
         public void DoctorAddPatient(Patient newPatient, string name)
         {
