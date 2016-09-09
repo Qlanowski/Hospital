@@ -25,6 +25,20 @@ namespace NewWeb.Models
             _context.DoctorPatients.Add(new DoctorPatient() { Id = doctor.Id, PatientId = patientId });
         }
 
+        public void DeletePatient(string name, int patientId)
+        {
+            var doctorId = _context.Doctors.Where(d => d.UserName == name)
+                .Select(d=>d.Id)
+                .FirstOrDefault();
+
+            var doctorPatient = _context.DoctorPatients
+                 .Where(d => d.Id == doctorId && d.PatientId == patientId)
+                 .FirstOrDefault();
+
+            _context.Remove(doctorPatient);
+                         
+        }
+
         public void DoctorAddPatient(Patient newPatient, string name)
         {
             var doctor = _context.Doctors.Where(d => d.UserName == name).FirstOrDefault();

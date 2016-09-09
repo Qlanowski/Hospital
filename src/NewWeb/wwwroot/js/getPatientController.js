@@ -25,10 +25,10 @@
 
         $scope.getPatient = function (patientId) {
             
-            $http.post("/api/patients/rest/" + patientId, patientId)
+            $http.post("/api/patients/rest/" + patientId)
             .then(function (response) {
                 //success
-                vm.errorMessage = "Successfuly get new patient";
+                location.reload()
             }, function (error) {
                 //failure
                 vm.errorMessage = "Failed to get new patients" + error;

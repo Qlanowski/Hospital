@@ -32,7 +32,8 @@
             controller: "getPatientController",
             controllerAs: "vm",
             templateUrl: "/views/getPatientController.html"
-        })
+        });
+        
 
 
         $routeProvider.otherwise({ redirectTo: "/" });

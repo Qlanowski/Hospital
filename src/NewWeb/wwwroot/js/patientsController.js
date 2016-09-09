@@ -38,9 +38,27 @@
             //else {
             //    newpatient.sex = "Female"
             //}
-            angular.copy(patient, vm.patient);
-            
+            angular.copy(patient, vm.patient);  
         };
+
+        $scope.deletePatient = function (patientId) {
+           var accept = confirm("Patient will be deleted");
+           if (accept == true) {
+               $http.delete("/api/patients/" + patientId)
+               .then(function () {
+                   //success
+                   location.reload();
+               }, function (error) {
+                   //failure
+                   vm.errorMessage = "Failed to delete patient" + error;
+               })
+        .finally(function () {
+            vm.isBusy = false;
+        });
+           }
+           
+        }
+            
     }
 
 })();

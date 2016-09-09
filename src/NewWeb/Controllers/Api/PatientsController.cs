@@ -136,5 +136,27 @@ namespace NewWeb.Controllers.Api
             return BadRequest("Failed to get patient");
         }
 
+        [HttpDelete("{patientId}")]
+        public async Task<IActionResult> Put([FromRoute] int patientId)
+        {
+            try
+            {
+                if (patientId != 0)
+                {
+                    _patientRepository.DeletePatient(User.Identity.Name, patientId);
+
+                    if (await _patientRepository.SaveChangesAsync())
+                    {
+                        return RedirectToAction("Patients", "App");
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("Failed to delete patient: {0}", ex);
+            }
+            return BadRequest("Failed to delete patient");
+        }
     }
 }
