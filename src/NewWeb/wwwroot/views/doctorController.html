@@ -4,16 +4,6 @@
         <h3>Patient's doctors  <a href="#!/" class="btn btn-default btn-sm"><i class="fa fa-angle-left"></i> Back</a></h3>
         <div class="text-danger" ng-show="vm.errorMessage">{{vm.errorMessage}}</div>
         <wait-cursor display-when="vm.isBusy"></wait-cursor>
-        <form novalidate name="newStopForm" ng-submit="vm.addStop()">
-            <div class="form-group">
-                <label>Username</label>
-                <input class="form-control" id="arrival" name="arrival" ng-model="vm.newStop.arrival" required ng-pattern="/^(\d{2})\-(\d{2})\-(\d{4})$/" />
-                <span class="text-danger" ng-show="newStopForm.arrival.$error.required">Required</span>
-                <span class="text-danger" ng-show="newStopForm.arrival.$error.pattern">Must be in format of MM-DD-YYYY.</span>
-            </div>
-            <div><input type="submit" value="New Doctor" class="btn btn-success" ng-disabled="newStopForm.$invalid" /></div>
-        </form>
-        <br/>
         <table class="table table-responsive">
             <tr>
                 <td>Username</td>
@@ -26,7 +16,5 @@
                 <td>{{doctor.ward}}</td>
             </tr>
         </table>
-
-
     </div>
 </div>

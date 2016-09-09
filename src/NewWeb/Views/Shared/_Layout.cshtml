@@ -17,7 +17,19 @@
             <li><a asp-controller="App" asp-action="Contact">Contact</a></li>
             @if (User.Identity.IsAuthenticated)
             {
-                <li><a asp-controller="App" asp-action="Patients">Patients</a></li>
+                @*<ul class="nav nav-pills nav-stacked">*@
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            Patients <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-controller="App" asp-action="Patients">View Patients</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#!/newpatient">Add Patient</a></li>
+                            <li><a href="#">Get Patient</a></li>
+                        </ul>
+                    </li>
+                @*</ul>*@
                 <li><a asp-controller="Auth" asp-action="Logout">Logout</a></li>
                 //<li>@User.Identity.Name</li>
             }
