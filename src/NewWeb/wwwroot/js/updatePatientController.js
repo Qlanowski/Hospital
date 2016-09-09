@@ -4,7 +4,7 @@
     angular.module("app-patients")
         .controller("updatePatientController", updatePatientController);
 
-    function updatePatientController($routeParams, $http) {
+    function updatePatientController($routeParams, $http, $scope) {
         var vm = this;
 
         
@@ -20,6 +20,7 @@
         $http.get("/api/patients/" + vm.patientId)
         .then(function (response) {
             //success
+            response.data.birthDate = new Date(response.data.birthDate); // zamienia JSONowa date z stringa na date tak żeby input date mógł to odczytać
             angular.copy(response.data, vm.patient)
         }, function (error) {
             //failure
@@ -28,6 +29,7 @@
         .finally(function () {
             vm.isBusy = false;
         });
+
 
         vm.editPatient = function () {
             vm.isBusy = true;
