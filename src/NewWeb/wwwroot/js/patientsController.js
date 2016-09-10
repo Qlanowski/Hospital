@@ -19,6 +19,14 @@
         .then(function (response) {
             //success
             angular.copy(response.data, vm.patients);
+            //zamienia 1 i 0 na płeć u pacjeta który wyświetla sie na poczatku
+            if (response.data[0].sex == 0) {
+                response.data[0].sex = "Male";
+            } else if (response.data[0].sex == 1) {
+                response.data[0].sex = "Felame";
+            }
+            angular.copy(response.data[0], vm.patient); //jak sie wyswietla lista pacjetów to odrazu jeden juz jest wyswietlany cały  
+
         }, function (error) {
             //failure
             vm.errorMessage = "Failed to load yours patients" + error;
@@ -29,16 +37,16 @@
 
         $scope.ShowPatient = function (patient) {
             // nie dziala zamiana 1 i 0 na plec
-            //vm.patient = {};
-            //var newpatient = {}
-            //newpatient = patient;
-            //if (newpatient.sex == 0) {
-            //    newpatient.sex = "Male";
-            //}
-            //else {
-            //    newpatient.sex = "Female"
-            //}
-            angular.copy(patient, vm.patient);  
+            vm.patient = {};
+
+            if (patient.sex == 0) {
+                patient.sex = "Male";
+            }
+            else if(patient.sex == 1) {
+                patient.sex = "Female";
+            }
+            angular.copy(patient, vm.patient);
+            
         };
 
         $scope.deletePatient = function (patientId) {
