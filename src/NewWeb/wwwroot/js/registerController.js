@@ -2,7 +2,7 @@
 
     "use strict";
     //Getting the existing module
-    angular.module("app-patients")
+    angular.module("app-register")
         .controller("registerController", registerController);
 
     function registerController($http) {

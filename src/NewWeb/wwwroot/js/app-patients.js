@@ -34,6 +34,7 @@
             templateUrl: "/views/getPatientController.html"
         });
         
+        
 
 
         $routeProvider.otherwise({ redirectTo: "/" });
