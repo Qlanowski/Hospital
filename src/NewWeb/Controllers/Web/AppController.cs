@@ -13,19 +13,11 @@ namespace NewWeb.Controllers.Web
 {
     public class AppController : Controller
     {
-        
-        private IPatientRepository _patientRepository;
         private ILogger<AppController> _logger;
-        private IDoctorRepository _doctorRepository;
 
-        public AppController(IPatientRepository patientRepository,
-            IDoctorRepository doctorRepository, 
-            ILogger<AppController> logger)
+        public AppController(ILogger<AppController> logger)
         {
-            _patientRepository = patientRepository;
-            _doctorRepository = doctorRepository;
             _logger = logger;
-
         }
 
         public IActionResult Index()

@@ -51,6 +51,7 @@ namespace NewWeb
             {
                 config.User.RequireUniqueEmail = true;
                 config.Password.RequiredLength = 8;
+                config.Password.RequireNonAlphanumeric = false;
                 config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
                 config.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents()
                 {
@@ -96,7 +97,7 @@ namespace NewWeb
                 config.CreateMap<RegisterDoctorViewModel, Doctor>().ReverseMap();
                 config.CreateMap<SentPatientViewModel, Doctor>().ReverseMap();
                 config.CreateMap<GetPatientViewModel, Patient>().ReverseMap();
-            });
+            }); // mapowanie miedzy tabelami w bazie a klasami
 
             if (env.IsEnvironment("Development"))
             {

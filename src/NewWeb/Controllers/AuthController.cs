@@ -77,22 +77,27 @@ namespace NewWeb.Controllers
             return View();
         }
         [HttpPost("Auth/Register")]
-        public async Task<IActionResult> Register([FromBody]RegisterDoctorViewModel theDoctor)
+        public async Task<ActionResult> Register([FromBody]RegisterDoctorViewModel theDoctor)//przyjmuje doctora w formie która jest w RegisterDoctor
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)//sprawdza czy doctorj jest zgodny z założeniami register doctor
             {
                 var password = theDoctor.Password;
-                var newDoctor = Mapper.Map<Doctor>(theDoctor);
+                var newDoctor = Mapper.Map<Doctor>(theDoctor);//mapuje doctora z RegisterDoctor na Doctor
 
                 var result = await _userManager.CreateAsync(newDoctor, password);
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(newDoctor, isPersistent: false);
-                    return RedirectToAction("Index", "App");
+                    return RedirectToAction("Patients", "App");//nie działa :( po zarejestrowaniu nie przechodzi do App Patients TODO
+                    
                 }
             }
-            return BadRequest("Failed to register");
+            else
+            {
+                return BadRequest("Failed to register");
+            }
             
+            return View();
 
         }
 

@@ -10,6 +10,7 @@
     <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
+    @*Id menu odpowiada za navbar który sie wyswietla na wszystkich stronach*@
     <div id="menu" class="navbar-static-top navbar">
         <ul class="nav navbar-nav">
             <li class="active"><a asp-controller="App" asp-action="Index">Home</a></li>
@@ -26,7 +27,7 @@
                         <li class="divider"></li>
                         <li><a href="#!/newpatient">Add Patient</a></li>
                         <li><a href="#!/getpatient">Get Patient</a></li>
-                        <li><a href="#!/deletepatient">Delete Patient</a></li>
+                        @*<li><a href="#!/deletepatient">Delete Patient</a></li>*@
                     </ul>
                 </li>
                 <li><a asp-controller="Auth" asp-action="Logout">Logout</a></li>
@@ -39,11 +40,13 @@
             }
         </ul>
     </div>
+    @*od tego miejsca zaczyna się strona która jest renderowana*@
     <div id="main">
             @RenderBody()    
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    @*tu wczytywane sa scrypty JS potrzebne do angulara albo do walidacji jquery*@
     @RenderSection("Scripts", false)
 </body>
 </html>
