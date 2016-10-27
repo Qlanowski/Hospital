@@ -1,9 +1,9 @@
 ﻿(function () {
     "use strict";
     angular.module("app-patients")
-    .controller("chartController",
+    .controller("chartController", chartController)
 
-    function ($scope, $rootScope) {
+    function chartController($scope, $rootScope) {
         $scope.$on("dataChange", function (event, passData) {
             $scope.options = {
                 chart: {
@@ -40,6 +40,6 @@
               }
             ];
         });
-    });
+    };
 
 })();

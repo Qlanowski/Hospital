@@ -12,7 +12,8 @@
     "underscore": "~1.8.3",
     "angular-ui-grid": "~3.2.9",
     "angular-touch": "~1.5.8",
-    "angular-nvd3": "~1.0.9"
+    "angular-nvd3": "1.0.8",
+    "d3": "~4.2.8"
   },
   "resolutions": {
     "angular": "1.5.9-build.4970+sha.1660ddd"

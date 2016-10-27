@@ -48,7 +48,7 @@
         </div>
         <div id="patientGridChart" class="panel panel-default">
             <div ng-controller="gridController">
-                <button type="button" ng-click="pushAll()">Chart</button>
+                <button class="btn btn-default" ng-click="pushAll()">Chart</button>
                 <div ui-grid="gridOptions" ui-grid-selection ui-grid-exporter class="grid"></div>
             </div>
             <div ng-controller="chartController">
