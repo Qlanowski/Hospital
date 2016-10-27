@@ -25,7 +25,7 @@ namespace NewWeb.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            //tworzenie tabeli łacznikowej miedzy Doctorem a Patientem
             modelBuilder.Entity<DoctorPatient>()
                 .HasKey(t => new { t.Id, t.PatientId });
 
@@ -48,7 +48,7 @@ namespace NewWeb.Models
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.UseSqlServer(_config["ConnectionStrings:MedContextConnection"]);
+            optionsBuilder.UseSqlServer(_config["ConnectionStrings:MedContextConnection"]);//bierze ścieżke z config.json
         }
 
 

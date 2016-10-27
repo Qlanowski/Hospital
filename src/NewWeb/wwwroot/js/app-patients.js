@@ -2,7 +2,7 @@
 
     "use strict";
     //Creating the module
-    angular.module("app-patients", ["simpleControls", "ngRoute"])
+    angular.module("app-patients", ["simpleControls", "ngRoute", "ui.grid", "ngTouch", "ui.grid.selection", "ui.grid.exporter", "nvd3"])
     .config(function ($routeProvider) {
 
         $routeProvider.when("/", {

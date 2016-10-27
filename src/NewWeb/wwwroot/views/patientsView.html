@@ -45,7 +45,15 @@
                     <td>{{vm.patient.email}}</td>
                 </tr>
             </table>
-
+        </div>
+        <div id="patientGridChart" class="panel panel-default">
+            <div ng-controller="gridController">
+                <button type="button" ng-click="pushAll()">Chart</button>
+                <div ui-grid="gridOptions" ui-grid-selection ui-grid-exporter class="grid"></div>
+            </div>
+            <div ng-controller="chartController">
+                <nvd3 options="options" data="data"></nvd3>
+            </div>
         </div>
     </div>
 </div>
